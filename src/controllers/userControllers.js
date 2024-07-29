@@ -5,7 +5,7 @@ async function createUser(req ,res) {
     console.log('CREATE USER CONTROLLER CALLED');
     console.log(req.body);
 
-    const userService = new UserService(new userRepository)
+    const userService = new UserService(new userRepository())
     console.log(userService);
     console.log(userRepository);
    try {
@@ -19,7 +19,7 @@ async function createUser(req ,res) {
     })
    } catch (error) {
     console.log(error);
-    return res.json({
+    return res.status(error.statusCode).json({
         success : false , 
         message : error.reason ,
         data : {} ,

@@ -1,7 +1,7 @@
 const User = require('../schema/userSchema')
 
 class userRepository {
-    async findUsers(parameters){
+    async findUser(parameters){
         try {
             const response = await User.findOne({...parameters})
             return response
