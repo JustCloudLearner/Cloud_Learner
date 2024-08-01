@@ -1,15 +1,17 @@
 const express = require('express')
-const serverconfig = require('./config/serverconfig.js')
+const serverconfig = require('./config/serverConfig.js')
 const connectDB = require('./config/dbConfig')
 const app = express()
 const userRouter = require('./routes/userRoute.js')
 const cartRouter = require('./routes/cartRoute.js')
+const authRouter = require('./routes/authRoute.js')
 
 app.use(express.json())
 app.use(express.text())
 app.use(express.urlencoded({extended: true}))
 app.use('/users' , userRouter)
 app.use("/cart" , cartRouter)
+app.use('/auth' , authRouter)
 
 app.post('/ping' , (req , res)=>{
     console.log(req.body);
