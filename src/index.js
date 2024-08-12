@@ -6,6 +6,7 @@ const cartRouter = require('./routes/cartRoute.js')
 const authRouter = require('./routes/authRoute.js')
 const cookieParser = require('cookie-parser')
 const { isLoggedIn } = require('./validation/authValidator.js')
+const uploader = require('./middlewares/multerMiddleware.js')
 const app = express()
 app.use(cookieParser())
 app.use(express.json())
@@ -19,6 +20,10 @@ app.get('/ping' , isLoggedIn , (req , res)=>{
     console.log(req.body);
     console.log(req.cookies);
     return res.json({message : 'pong'})
+})
+
+app.post('/photo' , uploader.single('incomingFile') , (req,res)=>{
+    return res.json({message : "OK"})
 })
 
 app.listen(serverconfig.PORT , async ()=>{
