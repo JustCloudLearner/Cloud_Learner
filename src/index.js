@@ -7,6 +7,8 @@ const authRouter = require('./routes/authRoute.js')
 const cookieParser = require('cookie-parser')
 const { isLoggedIn } = require('./validation/authValidator.js')
 const uploader = require('./middlewares/multerMiddleware.js')
+const cloudinary = require('./config/cloudinaryConfig.js')
+const fs = require('fs/promises')
 const app = express()
 app.use(cookieParser())
 app.use(express.json())
@@ -22,7 +24,11 @@ app.get('/ping' , isLoggedIn , (req , res)=>{
     return res.json({message : 'pong'})
 })
 
-app.post('/photo' , uploader.single('incomingFile') , (req,res)=>{
+app.post('/photo' , uploader.single('incomingFile') , async (req ,res)=>{
+    console.log(req.file);
+    const result = await cloudinary.uploader.upload(req.file.path)
+   console.log(`RESULT FROM CLOUDINARY : `, result);
+  await fs.unlink(req.file.path)   
     return res.json({message : "OK"})
 })
 
