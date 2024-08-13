@@ -21,8 +21,8 @@ const productSchema = new mongoose.Schema({
     } ,
     category : {
         type : String ,
-        enum : ['veg' , 'non-veg' , 'drinks' , 'sides'] ,
-        default : 'veg'
+        enum : ['veg' , 'non-veg' , 'drinks' , 'sides' , 'food'] ,
+        default : 'food'
     } ,
     inStock : {
         type : Boolean ,

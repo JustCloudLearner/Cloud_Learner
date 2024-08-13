@@ -9,6 +9,7 @@ const { isLoggedIn } = require('./validation/authValidator.js')
 const uploader = require('./middlewares/multerMiddleware.js')
 const cloudinary = require('./config/cloudinaryConfig.js')
 const fs = require('fs/promises')
+const productRouter = require('./routes/productRoute.js')
 const app = express()
 app.use(cookieParser())
 app.use(express.json())
@@ -17,6 +18,8 @@ app.use(express.urlencoded({extended: true}))
 app.use('/users' , userRouter)
 app.use("/cart" , cartRouter)
 app.use('/auth' , authRouter)
+app.use('/products' , productRouter)
+
 
 app.get('/ping' , isLoggedIn , (req , res)=>{
     console.log(req.body);
