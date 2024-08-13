@@ -20,7 +20,7 @@ return res.status(201).json({
 })
 } catch (error) {
  console.log(error);
-    return res.status(error.statusCode).json({
+    return res.status(500).json({
         success : false , 
         message : error.reason , 
         data : {} ,
