@@ -9,7 +9,7 @@ try {
 const product = await createProduct({
     productName : req.body.productName , 
     description : req.body.description ,//IF INSTOCK IS NOT DEFINED THEN IT IT WILL BE UNDEFINED
-    imagePath : req.file.path ,
+    imagePath : req.file?.path ,
     price : req.body.price ,
     category : req.body.category ,//IF CATEGORY IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE
     inStock : req.body.inStock //IF INSTOCK IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE 

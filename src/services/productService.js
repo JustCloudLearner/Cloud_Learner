@@ -8,8 +8,11 @@ async function createProduct(productDetails) {
     if (imagePath) {
   try {
     const cloudinaryResponse = await cloudinary.uploader.upload(imagePath) 
-    var productImage = cloudinaryResponse.secure_url    
-  await fs.unlink(imagePath)   
+    var productImage = cloudinaryResponse.secure_url
+    console.log(imagePath , __dirname);
+        console.log(process.cwd());
+        
+  await fs.unlink(process.cwd() + '/' +  imagePath)   
   } catch (error) {
     console.log(error);
     
