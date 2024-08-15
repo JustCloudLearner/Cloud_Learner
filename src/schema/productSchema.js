@@ -14,8 +14,8 @@ const productSchema = new mongoose.Schema({
     } ,
     productImage : {
         type : String ,
-        
-        },
+        required : true ,
+        default : 'https://bit.ly/4cnsaNK' },
     price : {
         type : Number ,
         required : [true , 'PRODUCT PRICE IS REQUIRED , PLEASE FILL IT'] ,
