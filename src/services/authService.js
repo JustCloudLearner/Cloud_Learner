@@ -25,8 +25,11 @@ if (!isPasswordValidated) {
 
 // CREATING TOKEN FOR AUTH AFTER PASSWORDD IS VALIDATED
 
+const userRole = user.role ? user.role : "USER"
 
-const token = jwt.sign({email : user.email ,  id : user._id} , JWT_SECRET , {expiresIn : JWT_EXPIRY})
+const token = jwt.sign({email: user.email , id: user._id , role: userRole} , JWT_SECRET , {
+    expiresIn: JWT_EXPIRY
+})
 
 return token
 

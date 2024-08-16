@@ -1,4 +1,3 @@
-const Product = require('../schema/productSchema');
 const {createProduct, getProductById, deleteProductById} = require('../services/productService');
 const AppError = require('../utils/appError');
 
@@ -14,6 +13,8 @@ const product = await createProduct({
     category : req.body.category ,//IF CATEGORY IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE
     inStock : req.body.inStock //IF INSTOCK IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE 
 })
+console.log('BACK TO CONTROLLER' , product);
+
 return res.status(201).json({
     success : true , 
     message : 'SUCCESSFULLY CREATED THE PRODUCT' , 

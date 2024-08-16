@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema ({
         type : String ,
         required: [true , 'PLEASE FILL OUT PASSWORD'] ,
         minlength : [6 , 'PASSWORD SHOULD 6 CHARACTERS LONG , WITH  MIX OF CAPITAL ,SMALL , SPECIAL CHARACTERS AND NUMBERS']
+    } ,
+    role :{
+        type: String ,
+        enum : ["USER" , "ADMIN"] ,
+        default : "USER"
     }
 } , {
     timestamps : true
