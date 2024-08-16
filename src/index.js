@@ -1,6 +1,6 @@
 const express = require('express')
 const serverconfig = require('./config/serverConfig.js')
-const connectDB = require('./config/dbConfig')
+const connectDB = require('./config/dbConfig.js')
 const userRouter = require('./routes/userRoute.js')
 const cartRouter = require('./routes/cartRoute.js')
 const authRouter = require('./routes/authRoute.js')
