@@ -11,6 +11,7 @@ productRouter.post(
     uploader.single("productImage"), 
     addProduct)
 productRouter.get("/:id" , getProduct)
-productRouter.delete("/:id" , deleteProduct)
+productRouter.delete("/:id" , isLoggedIn ,
+    isAdmin,   deleteProduct)
 
 module.exports = productRouter
