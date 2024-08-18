@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.text())
 app.use(express.urlencoded({extended: true}))
 app.use('/users' , userRouter)
-app.use("/cart" , cartRouter)
+app.use("/carts" , cartRouter)
 app.use('/auth' , authRouter)
 app.use('/products' , productRouter)
 

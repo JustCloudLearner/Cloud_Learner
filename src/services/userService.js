@@ -1,5 +1,5 @@
 const { findUser, createUser } = require("../repositories/userRepository");
-
+const {createcart} = require("../repositories/cartRepository")
   async  function registerUser(userDetails){
     console.log("HITTING SERVICE LAYER");
         const user = await findUser({
@@ -16,8 +16,13 @@ const { findUser, createUser } = require("../repositories/userRepository");
             firstName : userDetails.firstName ,
             lastName : userDetails.lastName 
         })
-    if(!newUser) {    throw {reason : "SOMETHING WENT WRONG" , statusCode : 500}  }
-    return newUser
+    if(!newUser) 
+        {
+          throw {reason : "SOMETHING WENT WRONG" , statusCode : 500} 
+         }
+
+         await createcart(newUser._id)
+         return newUser
     }
 
 
