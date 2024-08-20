@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const serverConfig = require('./serverconfig')
+const serverConfig = require('./serverConfig.js')
 async function connectDB() {
     try {
        await mongoose.connect(serverConfig.DB_URL)
