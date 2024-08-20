@@ -14,14 +14,20 @@ const productSchema = new mongoose.Schema({
     } ,
     productImage : {
         type : String ,
-        default : 'https://bit.ly/4cnsaNK' },
+        default : 'https://bit.ly/4cnsaNK' 
+    },
+        quantity: {
+            type: Number ,
+            required: [true , 'PLEASE ENTER PRODUCT QUANTITY ALSO'] ,
+            default: 10
+        },
     price : {
         type : Number ,
         required : [true , 'PRODUCT PRICE IS REQUIRED , PLEASE FILL IT'] ,
     } ,
     category : {
         type : String ,
-        enum : ['veg' , 'non-veg' , 'drinks' , 'sides' , 'food'] ,
+        enum : ['veg' , 'non-veg' , 'drinks' , 'sides' , 'food' , 'pizza'] ,
         default : 'food'
     } ,
     inStock : {
