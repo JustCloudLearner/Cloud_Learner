@@ -5,10 +5,6 @@ const userRouter = require('./routes/userRoute')
 const cartRouter = require('./routes/cartRoute')
 const authRouter = require('./routes/authRoute')
 const cookieParser = require('cookie-parser')
-const { isLoggedIn } = require('./validation/authValidator')
-const uploader = require('./middlewares/multerMiddleware')
-const cloudinary = require('./config/cloudinaryConfig')
-const fs = require('fs/promises')
 const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoutes')
 const app = express()
@@ -24,9 +20,10 @@ app.use('/orders' , orderRouter)
 
 
 
-
 app.listen(serverconfig.PORT , async ()=>{
  await connectDB()    
  console.log(`SERVER GOT STARTED ON PORT NO. ${serverconfig.PORT}`);
-  
+})
+app.get('/ping' , (req , res)=>{
+    return res.status(200).json({message : 'pong'})
 })
