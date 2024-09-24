@@ -22,6 +22,6 @@ const User = require('../schema/userSchema')
 
 
 module.exports = {
-    findUser ,
+    findUser,
     createUser
 }
