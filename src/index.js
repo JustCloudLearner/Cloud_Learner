@@ -22,19 +22,8 @@ app.use('/auth' , authRouter)
 app.use('/products' , productRouter)
 app.use('/orders' , orderRouter)
 
-app.get('/ping' , isLoggedIn , (req , res)=>{
-    console.log(req.body);
-    console.log(req.cookies);
-    return res.json({message : 'pong'})
-})
 
-app.post('/photo' , uploader.single('incomingFile') , async (req ,res)=>{
-    console.log(req.file);
-    const result = await cloudinary.uploader.upload(req.file.path)
-   console.log(`RESULT FROM CLOUDINARY : `, result);
-  await fs.unlink(req.file.path)   
-    return res.json({message : "OK"})
-})
+
 
 app.listen(serverconfig.PORT , async ()=>{
  await connectDB()    
