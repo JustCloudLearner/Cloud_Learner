@@ -1,5 +1,5 @@
 const { clearCart } = require("../repositories/cartRepository")
-const { createNewOrder } = require("../repositories/orderRepository")
+const { createNewOrder, getOrdersByUserId, getOrderById, updateOrderStatus } = require("../repositories/orderRepository")
 const BadRequestError = require("../utils/badRequestError")
 const InternalServerError = require("../utils/internalServarError")
 const NotFoundError = require("../utils/notFoundError")
@@ -24,7 +24,7 @@ async function createOrder(userId, paymentMethod) {
     orderObject.items = cart.items.map(cartItem => {
         return {product: cartItem.product._id , quantity : cartItem.quantity}
     })
-    orderObject.status = 'ORDERED'
+    // orderObject.status = 'ORDERED'
     orderObject.totalPrice = 0
     orderObject.paymentMethod = paymentMethod
     orderObject.address = user.address 
@@ -36,14 +36,42 @@ async function createOrder(userId, paymentMethod) {
      console.log('ORDER OBJECT :' , orderObject);
      console.log('ORDER :' , order);
     
-//    if(!order){
-//         throw new InternalServerError()
-//      }
-//      await clearCart(userId)
+   if(!order){
+        throw new InternalServerError()
+     }
+     await clearCart(userId)
     return order
 }
 
 
+async function getAllOrderDetailsById(orderId) {
+    const order = await getOrderById(orderId)
+    if (!order) {
+        throw new NotFoundError('ORDERS')
+    }
+    return order
+}
+
+async function updateOrder(orderId , status) {
+    const order = await updateOrderStatus(orderId , status)
+    if (!order) {
+        throw new NotFoundError('ORDERS')
+    }
+    return order
+    
+}
+
+async function getAllOrdersCreatedByUser(userId) {
+    const orders = await getOrdersByUserId(userId)
+    if(!orders){
+        throw new NotFoundError('Orders')
+    }
+    return orders
+}
+ 
 module.exports = {
-    createOrder
+    createOrder,
+    getAllOrderDetailsById,
+    updateOrder ,
+    getAllOrdersCreatedByUser
 }

@@ -1,4 +1,5 @@
-const {createOrder} = require('../services/orderService');
+const { updateOrderStatus } = require('../repositories/orderRepository');
+const {createOrder, getAllOrderDetailsById, getAllOrdersCreatedByUser, updateOrder} = require('../services/orderService');
 const AppError = require('../utils/appError');
 async function createNewOrder(req ,res) {
     try {
@@ -30,6 +31,131 @@ async function createNewOrder(req ,res) {
     }
 }
 
+async function getAllOrdersByUser(req ,res) {
+    try {
+        const order = await getAllOrdersCreatedByUser(req.user.id )
+        console.log(order);
+        
+        return res.status(200).json({
+            success:true ,
+            message: 'SUCCESSFULLY FETCHED THE ORDER' ,
+            error : {},
+            data: order            
+        })
+    } catch (error) {
+      
+        console.log(error);
+        if (error instanceof AppError) {
+            return res.status(error.statusCode).json({
+                success : false ,
+                message : error.message ,
+                error : error ,
+                data : {}
+            })
+        }
+        return res.status(500).json({
+            success : false ,
+            message : 'SOMETHING WENT WRONG' ,
+            error : error ,
+            data : {error:error}
+       
+    })
+    }
+}
+
+async function getOrder(req ,res) {
+    try {
+        const order = await getAllOrderDetailsById(req.params.orderId , req.body.paymentMethod)
+        return res.status(200).json({
+            success:true ,
+            message: 'SUCCESSFULLY CREATED THE ORDER' ,
+            error : {},
+            data:order            
+        })
+    } catch (error) {
+      
+        console.log(error);
+        if (error instanceof AppError) {
+            return res.status(error.statusCode).json({
+                success : false ,
+                message : error.message ,
+                error : error ,
+                data : {}
+            })
+        }
+        return res.status(500).json({
+            success : false ,
+            message : 'SOMETHING WENT WRONG' ,
+            error : error ,
+            data : {error:error}
+       
+    })
+    }
+}
+
+async function cancelOrder(req,res) {
+    try {
+        const order = await updateOrder(req.params.orderId , "CANCELLED")
+        return res.status(200).json({
+            success:true ,
+            message: 'SUCCESSFULLY CANCELLED THE ORDER' ,
+            error : {},
+            data:order            
+        })
+    } catch (error) {
+      
+        console.log(error);
+        if (error instanceof AppError) {
+            return res.status(error.statusCode).json({
+                success : false ,
+                message : error.message ,
+                error : error ,
+                data : {}
+            })
+        }
+        return res.status(500).json({
+            success : false ,
+            message : 'SOMETHING WENT WRONG' ,
+            error : error ,
+            data : {error:error}
+       
+    })
+    }
+}
+async function changeOrderStatus(req,res) {
+    try {
+        const order = await updateOrder(req.params.orderId , req.body.status)
+        return res.status(200).json({
+            success:true ,
+            message: 'SUCCESSFULLY CHANGED THE ORDER STATUS' ,
+            error : {},
+            data:order            
+        })
+    } catch (error) {
+      
+        console.log(error);
+        if (error instanceof AppError) {
+            return res.status(error.statusCode).json({
+                success : false ,
+                message : error.message ,
+                error : error ,
+                data : {}
+            })
+        }
+        return res.status(500).json({
+            success : false ,
+            message : 'SOMETHING WENT WRONG' ,
+            error : error ,
+            data : {error:error}
+       
+    })
+    }
+}
+
 module.exports = {
-    createNewOrder
+    createNewOrder,
+    changeOrderStatus,
+    cancelOrder,
+    getAllOrdersByUser,
+    getOrder
 }

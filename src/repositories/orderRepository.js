@@ -17,11 +17,49 @@ async function createNewOrder(orderDetails){
         })  
       throw new InternalServerError(errorMessageList)
     }
-        console.log(error)
+        
+    console.log(error)
         throw new InternalServerError(errorMessageList)
     }
 }
 
+async function getOrdersByUserId(userId) {
+    try {
+        const orders = await Order.find({user: userId}).populate('items.product')
+        console.log(`ORDER : ${orders}`);
+        
+        return orders
+    } catch (error) {
+        console.log(error);
+        throw new InternalServerError()
+        
+    }
+}
+
+async function getOrderById(orderId) {
+    try {
+        const order = await Order.findById(orderId)
+        return order
+    } catch (error) {
+        console.log(error);
+        throw new InternalServerError()
+        
+    }
+}
+
+async function updateOrderStatus(orderId , status) {
+    try {
+        const order = await Order.findByIdAndUpdate(orderId , {status: status} , {new : true})
+        return order
+    } catch (error) {
+        console.log(error);
+        throw new InternalServerError()
+    }
+}
+
 module.exports = {
-    createNewOrder
+    createNewOrder ,
+    getOrderById ,
+    getOrdersByUserId ,
+    updateOrderStatus
 }
