@@ -1,21 +1,12 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const userSchema = new mongoose.Schema ({
-    firstName : {
+    fullName : {
         type : String ,
-        required : [true , "FIRST NAME IS REQUIRED , PLEASE FILL IT"] ,
-        minlength : [5 , 'FIRST NAME SHOULD BE 5 CHARACHTER LONG'] ,
-        lowercase : true , 
+        required : [true , " NAME IS REQUIRED , PLEASE FILL IT"] ,
+        minlength : [5 , 'NAME SHOULD BE 5 CHARACHTER LONG'] ,
         trim : true ,
-        maxLength : [50 , "FIRST NAME NOT SHOULD BE MORE THAN 50 CHARACTERS LONG "]
-    } ,
-    lastName : {
-        type : String ,
-        required : [true , "FIRST NAME IS REQUIRED , PLEASE FILL IT"] ,
-        minlength : [5 , 'FIRST NAME SHOULD BE 5 CHARACHTER LONG'] ,
-        lowercase : true , 
-        trim : true ,
-        maxLength : [50 , "FIRST NAME NOT SHOULD BE MORE THAN 50 CHARACTERS LONG "]
+        maxLength : [100 , "NAME NOT SHOULD BE MORE THAN 100 CHARACTERS LONG "]
     } ,
     mobileNumber : {
         type : String , 

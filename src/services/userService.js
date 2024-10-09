@@ -13,8 +13,8 @@ const {createcart} = require("../repositories/cartRepository")
             email : userDetails.email ,
             mobileNumber : userDetails.mobileNumber , 
             password : userDetails.password ,
-            firstName : userDetails.firstName ,
-            lastName : userDetails.lastName 
+            fullName : userDetails.fullName ,
+            
         })
     if(!newUser) 
         {
