@@ -31,7 +31,10 @@ const token = jwt.sign({email: user.email , id: user._id , role: userRole} , JWT
     expiresIn: JWT_EXPIRY
 })
 
-return token
+return {token , userRole , userData:{
+    email: user.email ,
+    fullName: user.fullName
+} }
 
  }
 

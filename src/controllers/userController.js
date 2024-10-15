@@ -1,4 +1,5 @@
-const {registerUser} = require("../services/userService")
+const {registerUser} = require("../services/userService");
+const AppError = require("../utils/appError");
 
 async function createUser(req ,res) {
     console.log('CREATE USER CONTROLLER CALLED');
@@ -15,6 +16,14 @@ async function createUser(req ,res) {
         error : {}
     })
    } catch (error) {
+    if (error instanceof AppError ) {
+        return res.status(error.statusCode).json({
+            success : false , 
+            message : error.message , 
+            data : {} ,
+            error : error
+        })
+    }
     console.log(error);
     return res.status(error.statusCode).json({
         success : false , 

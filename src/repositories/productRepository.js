@@ -45,4 +45,16 @@ async function deleteProductById(productId) {
     }
 }
 
-module.exports = {createProduct , getProductById , deleteProductById}
+async function getAllProducts() {
+    try {
+        const products = await Product.find({})
+        
+        return products
+    } catch (error) {
+        console.log(error.name);
+        throw new InternalServerError()
+        
+    }
+}
+
+module.exports = {createProduct , getProductById , deleteProductById , getAllProducts}
