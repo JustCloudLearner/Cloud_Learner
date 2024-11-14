@@ -13,6 +13,9 @@ async function isLoggedIn(req , res , next) {
     }
     try {
     const decoded = jwt.verify(token , JWT_SECRET)
+    
+    console.log("JWT Token Decoded: ", decoded);
+    
     if (!decoded) {
         throw new UnAuthorisedError()
     }
@@ -25,6 +28,19 @@ async function isLoggedIn(req , res , next) {
     next();
         
     } catch (error) {
+        if (error.name == "TokenExpiredError") {
+            res.cookie('authToken' , '' , {
+                httpOnly : true ,
+                secure : false ,
+                maxAge : 10 * 24 * 60 * 60 * 1000
+            })
+            return res.status(200).json({
+                success: true,
+                message: 'SUCCESSFULY LOG OUT',
+                error: {},
+                data: {}
+            })
+        }
         return res.status(401).json({
             success : false , 
             data : {} ,

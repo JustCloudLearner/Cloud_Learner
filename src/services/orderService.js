@@ -5,13 +5,14 @@ const InternalServerError = require("../utils/internalServarError")
 const NotFoundError = require("../utils/notFoundError")
 const { getCartByUserId } = require("../repositories/cartRepository")
 const {findUser} = require('../repositories/userRepository.js')
-async function createOrder(userId, paymentMethod) { 
+async function createOrder(userId, paymentMethod , address) { 
     const cart = await getCartByUserId(userId)
     const user = await findUser({_id : cart.user})
    console.log(cart);
    
     console.log(user);
     
+   console.log(":Address From input:" , address);
    
     if(!cart){
         throw new NotFoundError('Cart')
@@ -27,7 +28,7 @@ async function createOrder(userId, paymentMethod) {
     // orderObject.status = 'ORDERED'
     orderObject.totalPrice = 0
     orderObject.paymentMethod = paymentMethod
-    orderObject.address = user.address 
+    orderObject.address = address 
      cart.items.forEach((cartItem) => {
         orderObject.totalPrice += cartItem.quantity * cartItem.product.price
      });

@@ -4,11 +4,11 @@ const AppError = require('../utils/appError');
 async function createNewOrder(req ,res) {
     try {    console.log("Request Body:", req.body); // Log full body structure
         console.log("User ID:", req.user.id);
-        console.log("Address:", req.body.address);
-        console.log("Payment Method:", req.body.paymentMethod)
+        console.log("Address:", req.address);
+        console.log("Payment Method:", req.paymentMethod)
         const address = req.body.address
         const paymentMethod = req.body.paymentMethod
-        const order = await createOrder(req.user.id , address , paymentMethod)
+        const order = await createOrder(req.user.id , paymentMethod , address)
         return res.status(201).json({
             success:true ,
             message: 'SUCCESSFULLY CREATED THE ORDER' ,
