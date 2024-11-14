@@ -32,3 +32,7 @@ app.listen(serverconfig.PORT , async ()=>{
 app.get('/ping' , (req , res)=>{
     return res.status(200).json({message : 'pong'})
 })
+app.post('/test-body', (req, res) => {
+    console.log("Request Body in Test Route:", req.body);
+    res.json({ received: req.body });
+});

@@ -2,8 +2,13 @@ const { updateOrderStatus } = require('../repositories/orderRepository');
 const {createOrder, getAllOrderDetailsById, getAllOrdersCreatedByUser, updateOrder} = require('../services/orderService');
 const AppError = require('../utils/appError');
 async function createNewOrder(req ,res) {
-    try {
-        const order = await createOrder(req.user.id , req.body.paymentMethod)
+    try {    console.log("Request Body:", req.body); // Log full body structure
+        console.log("User ID:", req.user.id);
+        console.log("Address:", req.body.address);
+        console.log("Payment Method:", req.body.paymentMethod)
+        const address = req.body.address
+        const paymentMethod = req.body.paymentMethod
+        const order = await createOrder(req.user.id , address , paymentMethod)
         return res.status(201).json({
             success:true ,
             message: 'SUCCESSFULLY CREATED THE ORDER' ,

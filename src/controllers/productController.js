@@ -11,7 +11,9 @@ const product = await createProduct({
     imagePath : req.file?.path ,
     price : req.body.price ,
     category : req.body.category ,//IF CATEGORY IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE
-    inStock : req.body.inStock //IF INSTOCK IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE 
+    inStock : req.body.inStock
+    ,
+    quantity: req.body.quantity //IF INSTOCK IS NOT DEFINED THEN IT IT WILL BE T'S DEFAULT VALUE 
 })
 console.log('BACK TO CONTROLLER' , product);
 

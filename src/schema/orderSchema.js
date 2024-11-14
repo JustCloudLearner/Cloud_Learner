@@ -31,7 +31,7 @@ const orderSchema = new mongoose.Schema({
     } ,
     address: {
         type: String ,
-        minLength : [10 , 'ADDRESS SHOULD BE ATLEAST 10 CHARACTERS LONG'] ,
+        // minLength : [10 , 'ADDRESS SHOULD BE ATLEAST 10 CHARACTERS LONG'] ,
         required: true
     } ,
     paymentMethod: {
