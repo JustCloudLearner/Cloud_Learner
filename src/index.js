@@ -37,4 +37,4 @@ app.post('/test-body', (req, res) => {
     res.json({ received: req.body });
 });
 console.log("RUNNING");
-console.log(document.cookie);
+console.log(document.cookie());
