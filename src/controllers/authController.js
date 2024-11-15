@@ -5,7 +5,7 @@ async function logout(req,res) {
     
     res.cookie('authToken' , '' , {
         httpOnly : true ,
-        secure : false ,
+        secure : true ,
         maxAge : 10 * 24 * 60 * 60 * 1000
     })
     return res.status(200).json({
@@ -27,7 +27,8 @@ async function login(req , res) {
     res.cookie("authToken" , response.token , {
         httpOnly : true ,
         secure : true ,
-        maxAge : 10 * 24 * 60 * 60 * 1000
+        maxAge : 10 * 24 * 60 * 60 * 1000,
+        sameSite: 'none'
     })
 
     return res.status(200).json({
