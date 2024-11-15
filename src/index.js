@@ -36,3 +36,4 @@ app.post('/test-body', (req, res) => {
     console.log("Request Body in Test Route:", req.body);
     res.json({ received: req.body });
 });
+console.log("RUNNING");

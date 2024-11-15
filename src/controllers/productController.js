@@ -99,6 +99,8 @@ async function deleteProduct(req , res) {
 
 async function getProducts(req , res) {
     try {
+        console.log("Product Controller");
+        
       const response = await getAllProductsData()
       return res.status(200).json({
         success : true ,
