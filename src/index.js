@@ -29,8 +29,8 @@ app.listen(serverconfig.PORT , async ()=>{
  await connectDB()    
  console.log(`SERVER GOT STARTED ON PORT NO. ${serverconfig.PORT}`);
 })
-app.get('/ping' , (req , res)=>{
-    return res.status(200).json({message : 'pong'})
+app.get('/' , (req , res)=>{
+    return res.redirect('https://hungryfoodielocal.web.app')
 })
 app.post('/test-body', (req, res) => {
     console.log("Request Body in Test Route:", req.body);
