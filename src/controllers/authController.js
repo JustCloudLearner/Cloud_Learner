@@ -18,6 +18,7 @@ async function logout(req,res) {
 
 async function login(req , res) {
     try {
+        console.log(req.cookies);
         
     const loginPayload = req.body
 
