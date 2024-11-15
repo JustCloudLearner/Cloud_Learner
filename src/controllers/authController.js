@@ -25,7 +25,7 @@ async function login(req , res) {
 
     res.cookie("authToken" , response.token , {
         httpOnly : true ,
-        secure : false ,
+        secure : true ,
         maxAge : 10 * 24 * 60 * 60 * 1000
     })
 
