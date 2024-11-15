@@ -9,10 +9,10 @@ const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoutes')
 const cors = require("cors")
 const app = express()
-app.use(cors({
-    origin: "https://hungryfoodielocal.web.app",
-    credentials: true
-}))
+// app.use(cors({
+//     origin: "https://hungryfoodielocal.web.app",
+//     credentials: true
+// }))
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.text())
@@ -37,4 +37,4 @@ app.post('/test-body', (req, res) => {
     res.json({ received: req.body });
 });
 console.log("RUNNING");
-console.log(document.cookie());
+// console.log(document.cookie());
