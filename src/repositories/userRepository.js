@@ -10,7 +10,7 @@ const InternalServerError = require('../utils/internalServarError');
         } catch (error) {
             console.log(error);
         }
-     
+      
     }
     async function createUser(userDetails){
         try {
@@ -26,7 +26,7 @@ const InternalServerError = require('../utils/internalServarError');
                 
               throw new BadRequestError(errorMessageList)
              }
-            
+             
             console.log(error);
             throw new InternalServerError()
         }
