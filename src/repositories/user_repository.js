@@ -1,4 +1,9 @@
 const User = require('../schema/userSchema.js')
+const mailer = require('../helpers/nodemailer.js');
+const { sendOTP } = require('../helpers/sendOTP.js');
+const OTP = require('../schema/otpschema.js');
+
+
 async function findUser(parameters){
     try {
         const response = await User.findOne({...parameters})
@@ -29,8 +34,21 @@ async function createUser(userdetails) {
         console.log(e)
     }
 } 
+async function sendOTPForVerificationRepo (userdetails) {
+    try {
+        const server_response = await sendOTP(userdetails)
+        return server_response
+    }
+    catch (e) {
+        console.log(e)
+        console.log("Error while sending OTP")
+    }
+} 
+
 module.exports = {
     findUserById,
     createUser, 
-    findUser
+    findUser,
+    sendOTPForVerificationRepo,
+  
 }
